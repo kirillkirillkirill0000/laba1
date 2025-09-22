@@ -45,52 +45,47 @@ package demo.parallel;
  * @author Alexander Kouznetsov, Tristan Yan
  */
 public class Complex {
-    
-    private double re;   // the real part
-    private double im;   // the imaginary part
+    private double re;
+    private double im;
 
-    /** 
-     * create a new object with the given real and imaginary parts
-     * 
-     * @param real a complex number real part
-     * @param imag a complex number imaginary part 
-     */
     public Complex(double real, double imag) {
-        re = real;
-        im = imag;
+        this.re = real;
+        this.im = imag;
     }
 
-    /**
-     * Add operation.
-     * @param b summand
-     * @return this Complex object whose value is (this + b)
-     */
     public Complex plus(Complex b) {
-        re += b.re;
-        im += b.im;
+        this.re += b.re;
+        this.im += b.im;
         return this;
     }
 
-    /**
-     * Multiply operation.
-     * @param  b multiplier
-     * @return this Complex object whose value is this * b
-     */
     public Complex times(Complex b) {
-        Complex a = this;
-        double real = a.re * b.re - a.im * b.im;
-        double imag = a.re * b.im + a.im * b.re;
-        re = real;
-        im = imag;
+        double real = this.re * b.re - this.im * b.im;
+        double imag = this.re * b.im + this.im * b.re;
+        this.re = real;
+        this.im = imag;
         return this;
     }
 
-    /**
-     * Square of Complex object's length, we're using square of length to 
-     * eliminate the computation of square root
-     * @return square of length
-    */
+    public Complex minus(Complex b) {
+        this.re -= b.re;
+        this.im -= b.im;
+        return this;
+    }
+
+    public Complex divide(Complex b) {
+        double denominator = b.re * b.re + b.im * b.im;
+        if (denominator == 0) {
+            throw new ArithmeticException("Division by zero");
+        }
+        double real = (this.re * b.re + this.im * b.im) / denominator;
+        double imag = (this.im * b.re - this.re * b.im) / denominator;
+        this.re = real;
+        this.im = imag;
+        return this;
+    }
+
     public double lengthSQ() {
-        return re * re + im * im;
+        return this.re * this.re + this.im * this.im;
     }
 }
