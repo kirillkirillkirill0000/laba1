@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "JavaFX: Main",
+      "request": "launch",
+      "mainClass": "demo.parallel.Main",
+      "vmArgs": "--module-path \"C:\\Program Files\\Java\\javafx-sdk-24.0.2\\lib\" --add-modules javafx.controls,javafx.fxml",
+      "classPaths": [
+        "out"
+      ]
+    }
+  ]
+}
+
+//для компиляции
+//javac --module-path "C:\Program Files\Java\javafx-sdk-24.0.2\lib" --add-modules javafx.controls,javafx.fxml -d out src/demo/parallel/*.java
+//для запуска
+//java --module-path "C:\Program Files\Java\javafx-sdk-24.0.2\lib" --add-modules javafx.controls,javafx.fxml -cp out demo.parallel.Main

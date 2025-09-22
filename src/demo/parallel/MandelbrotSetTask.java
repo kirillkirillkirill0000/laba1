@@ -346,37 +346,24 @@ class MandelbrotSetTask extends Task<Long> {
     static final Color[] colors = new Color[256];
 
     static {
-        
-        /**
-         * Color stops for colors table: color values
-         */
-        Color[] cc = {
-            Color.rgb(40, 0, 0),
-            Color.RED,
-            Color.WHITE,
-            Color.RED,
-            Color.rgb(100, 0, 0),
-            Color.RED,
-            Color.rgb(50, 0, 0)
-        };
-        
-        /**
-         * Color stops for colors table: relative position in the table
-         */
-        double[] cp = {
-            0, 0.17, 0.25, 0.30, 0.5, 0.75, 1,};
-        
-        /**
-         * Color table population
-         */
-        int j = 0;
-        for (int i = 0; i < colors.length; i++) {
-            double p = (double) i / (colors.length - 1);
-            if (p > cp[j + 1]) {
-                j++;
-            }
-            double val = (p - cp[j]) / (cp[j + 1] - cp[j]);
-            colors[i] = cc[j].interpolate(cc[j + 1], val);
+    Color[] cc = {
+        Color.rgb(0, 0, 40),      // Dark blue
+        Color.BLUE,               // Blue
+        Color.CYAN,               // Cyan
+        Color.GREEN,              // Green
+        Color.rgb(0, 100, 0),     // Dark green
+        Color.GREENYELLOW,        // Green-yellow
+        Color.rgb(0, 50, 0)       // Very dark green
+    };
+    double[] cp = {0, 0.17, 0.25, 0.30, 0.5, 0.75, 1};
+    int j = 0;
+    for (int i = 0; i < colors.length; i++) {
+        double p = (double) i / (colors.length - 1);
+        if (p > cp[j + 1]) {
+            j++;
         }
+        double val = (p - cp[j]) / (cp[j + 1] - cp[j]);
+        colors[i] = cc[j].interpolate(cc[j + 1], val);
     }
+}
 }
