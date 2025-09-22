@@ -275,17 +275,18 @@ class MandelbrotSetTask extends Task<Long> {
     int count = 0;
     Complex c = new Complex(0, 0);
     do {
-        if (c.lengthSQ() == 0) { // Avoid division by zero
+        if (c.lengthSQ() < 1e-10) { // Avoid division by zero
             c = c.times(c).plus(comp); // Fallback to z^2 + c
         } else {
-            Complex zInverse = new Complex(comp.re, comp.im); // Create a copy of comp
-            zInverse.divide(c); // c / z
+            Complex zInverse = new Complex(comp.getRe(), comp.getIm());
+            zInverse = zInverse.divide(c); // c / z
             c = c.times(c).minus(zInverse); // z^2 - c / z
         }
         count++;
     } while (count < CAL_MAX_COUNT && c.lengthSQ() < LENGTH_BOUNDARY);
     return count;
 }
+
 
     /**
      * Calculates a color of a given pixel on the image using 
